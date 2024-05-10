@@ -19,6 +19,7 @@ import java.util.Set;
 @Builder
 //@Audited
 public class Domicilio extends Base{
+
     private String calle;
     private Integer numero;
     private Integer cp;
@@ -28,6 +29,10 @@ public class Domicilio extends Base{
     @ManyToOne
     @NotAudited
     private Localidad localidad;
+
+    @ManyToMany (mappedBy = "domicilios")
+    @Builder.Default
+    private Set<Cliente> clientes = new HashSet<>();
 
 
 }

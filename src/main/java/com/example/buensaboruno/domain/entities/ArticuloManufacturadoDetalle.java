@@ -15,6 +15,7 @@ import org.hibernate.envers.Audited;
 @Entity
 //@Audited
 public class ArticuloManufacturadoDetalle extends Base{
+
     private Integer cantidad;
 
     @ManyToOne

@@ -9,6 +9,9 @@ import lombok.*;
 @Setter
 @Getter
 @Builder
-public class ImagenPersona extends Base{
-    private String url;
+public class UsuarioEmpleado extends Base {
+
+    private String auth0Id;
+    private String username;
+
 }

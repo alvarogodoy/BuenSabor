@@ -2,8 +2,6 @@ package com.example.buensaboruno.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
-import org.hibernate.envers.Audited;
 
 @Entity
 @AllArgsConstructor
@@ -13,7 +11,8 @@ import org.hibernate.envers.Audited;
 @ToString
 @Builder
 //@Audited
-public class DetallePedido extends Base{
+public class PedidoDetalle extends Base{
+
     private Integer cantidad;
     private Double subTotal;
 

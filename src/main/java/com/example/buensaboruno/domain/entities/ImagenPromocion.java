@@ -1,8 +1,6 @@
 package com.example.buensaboruno.domain.entities;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 @Entity
@@ -10,10 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString
 @Builder
-public class ImagenArticulo extends Base{
+public class ImagenPromocion extends Base {
 
     private String url;
-
 }

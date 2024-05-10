@@ -15,6 +15,7 @@ import java.util.List;
 @ToString
 @Builder
 public class Provincia extends Base {
+
     private String nombre;
 
     @ManyToOne

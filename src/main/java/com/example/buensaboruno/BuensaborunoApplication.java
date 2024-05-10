@@ -17,7 +17,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
 import java.util.Random;
-import java.util.Set;
 
 
 @SpringBootApplication
@@ -25,9 +24,20 @@ public class BuensaborunoApplication {
 	private static final Logger logger = LoggerFactory.getLogger(BuensaborunoApplication.class);
 
 	@Autowired
+	private ArticuloInsumoRepository articuloInsumoRepository;
+
+	@Autowired
+	private ArticuloManufacturadoRepository articuloManufacturadoRepository;
+
+	@Autowired
+	private ArticuloManufacturadoDetalleRepository articuloManufacturadoDetalleRepository;
+
+	@Autowired
 	private ClienteRepository clienteRepository;
+
 	@Autowired
 	private ImagenPersonaRepository imagenPersonaRepository;
+
 	@Autowired
 	private PromocionDetalleRepository promocionDetalleRepository;
 
@@ -59,19 +69,13 @@ public class BuensaborunoApplication {
 	private CategoriaRepository categoriaRepository;
 
 	@Autowired
-	private ArticuloInsumoRepository articuloInsumoRepository;
-
-	@Autowired
-	private ArticuloManufacturadoRepository articuloManufacturadoRepository;
-
-	@Autowired
 	private ImagenArticuloRepository imagenArticuloRepository;
 
 	@Autowired
 	private PromocionRepository promocionRepository;
 
-	@Autowired
-	private ArticuloManufacturadoDetalleRepository articuloManufacturadoDetalleRepository;
+
+
 
 	@Autowired
 	private PedidoRepository pedidoRepository;
@@ -475,8 +479,8 @@ public class BuensaborunoApplication {
 					.domicilio(domicilioCliente)
 					.build();
 
-			DetallePedido detallePedido1 = DetallePedido.builder().articulo(pizzaMuzarella).cantidad(1).subTotal(200.0).build();
-			DetallePedido detallePedido2 = DetallePedido.builder().articulo(cocaCola).cantidad(2).subTotal(100.0).build();
+			PedidoDetalle detallePedido1 = PedidoDetalle.builder().articulo(pizzaMuzarella).cantidad(1).subTotal(200.0).build();
+			PedidoDetalle detallePedido2 = PedidoDetalle.builder().articulo(cocaCola).cantidad(2).subTotal(100.0).build();
 
 			pedido.getDetallePedidos().add(detallePedido1);
 			pedido.getDetallePedidos().add(detallePedido2);

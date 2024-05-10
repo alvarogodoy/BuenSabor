@@ -1,6 +1,5 @@
 package com.example.buensaboruno.repositories;
 
-import com.example.buensaboruno.domain.entities.Cliente;
 import com.example.buensaboruno.domain.entities.Empleado;
 import org.springframework.stereotype.Repository;
 
