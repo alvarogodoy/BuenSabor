@@ -27,7 +27,7 @@ public class Cliente extends Base {
     private String email;
     private LocalDate fechaNacimiento;
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ManyToMany
     @ToString.Exclude
     @JoinTable(name = "cliente_domicilio",
             joinColumns = @JoinColumn(name = "domicilio_id"),
