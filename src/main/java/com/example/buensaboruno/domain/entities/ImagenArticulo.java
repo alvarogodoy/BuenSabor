@@ -15,5 +15,4 @@ import lombok.*;
 public class ImagenArticulo extends Base{
 
     private String url;
-
 }
