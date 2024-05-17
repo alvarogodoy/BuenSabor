@@ -1,20 +1,14 @@
 package com.example.buensaboruno.controllers;
 
 import com.example.buensaboruno.domain.entities.*;
-import com.example.buensaboruno.repositories.ArticuloInsumoRepository;
 import com.example.buensaboruno.repositories.ArticuloManufacturadoRepository;
-import com.example.buensaboruno.repositories.ImagenArticuloRepository;
-import com.example.buensaboruno.repositories.UnidadMedidaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
+
 
 @RestController
 public class ArticuloManufacturadoController{
