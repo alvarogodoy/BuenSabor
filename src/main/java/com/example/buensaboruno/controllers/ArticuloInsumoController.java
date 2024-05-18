@@ -53,7 +53,15 @@ public class ArticuloInsumoController {
         ArticuloInsumo articuloInsumo = articuloInsumoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "ArticuloInsumo no encontrado con id: " + id));
         articuloInsumo.setDenominacion(datosActualizados.getDenominacion());
-        // Actualiza otros atributos según sea necesario
+        articuloInsumo.setPrecioVenta(datosActualizados.getPrecioVenta());
+        articuloInsumo.setImagenesArticulo(datosActualizados.getImagenesArticulo());
+        articuloInsumo.setUnidadMedida(datosActualizados.getUnidadMedida());
+        articuloInsumo.setPrecioCompra(datosActualizados.getPrecioCompra());
+        articuloInsumo.setStockActual(datosActualizados.getStockActual());
+        articuloInsumo.setStockMaximo(datosActualizados.getStockMaximo());
+        articuloInsumo.setEsParaElaborar(datosActualizados.getEsParaElaborar());
+
+        // Actualizar otros atributos según sea necesario
         return articuloInsumoRepository.save(articuloInsumo);
     }
 
