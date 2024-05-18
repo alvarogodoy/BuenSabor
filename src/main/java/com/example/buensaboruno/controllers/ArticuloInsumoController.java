@@ -30,11 +30,21 @@ public class ArticuloInsumoController {
         return articuloInsumoRepository.save(nuevoInsumo);
     }
 
-    @PatchMapping("/insumos/{id}")
+    @PatchMapping("/insumos/{id}/eliminar")
     public void eliminarArticuloInsumo(@PathVariable Long id) {
         ArticuloInsumo articuloInsumo = articuloInsumoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "ArticuloInsumo no encontrado con id: " + id));
         articuloInsumo.setEliminado(true);
+        articuloInsumoRepository.save(articuloInsumo);
+    }
+
+    @PatchMapping("/insumos/{id}/recuperar")
+    public void recuperarArticuloInsumo(@PathVariable Long id) {
+        ArticuloInsumo articuloInsumo = articuloInsumoRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "ArticuloInsumo no encontrado con id: " + id));
+
+        articuloInsumo.setEliminado(false);
+
         articuloInsumoRepository.save(articuloInsumo);
     }
 
