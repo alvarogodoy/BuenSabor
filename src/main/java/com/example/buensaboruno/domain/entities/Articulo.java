@@ -1,5 +1,6 @@
 package com.example.buensaboruno.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -30,5 +31,10 @@ public abstract class Articulo extends Base {
     @ManyToOne
     @JoinColumn(name = "unidad_medida_id", nullable = false)
     protected UnidadMedida unidadMedida;
+
+    @ManyToOne
+    @JoinColumn(name = "Categoria_ID")
+    @JsonIgnoreProperties({"subCategorias", "categoriaPadre", "sucursales", "articulos"})
+    protected Categoria categoria;
 
 }
