@@ -39,6 +39,7 @@ public class ArticuloManufacturadoDetalleController {
         articuloManufacturadoDetalleRepository.save(detalle);
     }
 
+
     @PutMapping("/articulos-detalle/{id}")
     public ArticuloManufacturadoDetalle actualizarArticuloManufacturadoDetalle(@PathVariable Long id, @RequestBody ArticuloManufacturadoDetalle datosActualizados) {
         ArticuloManufacturadoDetalle detalle = articuloManufacturadoDetalleRepository.findById(id)
