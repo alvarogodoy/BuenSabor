@@ -4,6 +4,7 @@ import com.example.buensaboruno.domain.entities.ArticuloManufacturadoDetalle;
 import com.example.buensaboruno.repositories.ArticuloManufacturadoDetalleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -38,6 +39,7 @@ public class ArticuloManufacturadoDetalleController {
         articuloManufacturadoDetalleRepository.save(detalle);
     }
 
+
     @PutMapping("/articulos-detalle/{id}")
     public ArticuloManufacturadoDetalle actualizarArticuloManufacturadoDetalle(@PathVariable Long id, @RequestBody ArticuloManufacturadoDetalle datosActualizados) {
         ArticuloManufacturadoDetalle detalle = articuloManufacturadoDetalleRepository.findById(id)
@@ -45,5 +47,12 @@ public class ArticuloManufacturadoDetalleController {
         detalle.setCantidad(datosActualizados.getCantidad());
         // Actualiza otros atributos según sea necesario
         return articuloManufacturadoDetalleRepository.save(detalle);
+    }
+
+    // Endpoint para obtener el último id
+    @GetMapping("/articulos-detalle/ultimoId")
+    public ResponseEntity<Long> obtenerUltimoId() {
+        Long ultimoId = articuloManufacturadoDetalleRepository.obtenerUltimoId(); // Implementa este método en tu servicio
+        return ResponseEntity.ok(ultimoId);
     }
 }

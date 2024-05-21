@@ -40,12 +40,30 @@ public class ArticuloManufacturadoController{
         articuloManufacturadoRepository.save(articulo);
     }
 
+    @PatchMapping("/articulos-manufacturados/{id}/recuperar")
+    public void recuperarArticuloManufacturado(@PathVariable Long id) {
+        ArticuloManufacturado articuloManufacturado = articuloManufacturadoRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "ArticuloManufacturado no encontrado con id: " + id));
+
+        articuloManufacturado.setEliminado(false);
+
+        articuloManufacturadoRepository.save(articuloManufacturado);
+    }
+
     @PutMapping("/articulos-manufacturados/{id}")
     public ArticuloManufacturado actualizarArticuloManufacturado(@PathVariable Long id, @RequestBody ArticuloManufacturado datosActualizados) {
         // Lógica para actualizar un ArticuloManufacturado por su ID con los datos proporcionados
         ArticuloManufacturado articulo = articuloManufacturadoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "ArticuloManufacturado no encontrado con id: " + id));
         articulo.setDenominacion(datosActualizados.getDenominacion());
+        articulo.setPrecioVenta(datosActualizados.getPrecioVenta());
+        articulo.setImagenesArticulo(datosActualizados.getImagenesArticulo());
+        articulo.setUnidadMedida(datosActualizados.getUnidadMedida());
+        articulo.setPreparacion(datosActualizados.getPreparacion());
+        articulo.setDescripcion(datosActualizados.getDescripcion());
+        articulo.setTiempoEstimadoMinutos(datosActualizados.getTiempoEstimadoMinutos());
+        articulo.setArticuloManufacturadoDetalles(datosActualizados.getArticuloManufacturadoDetalles());
+        articulo.setCategoria(datosActualizados.getCategoria());
         // Actualiza otros atributos según sea necesario
         return articuloManufacturadoRepository.save(articulo);
     }

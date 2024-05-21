@@ -60,6 +60,7 @@ public class ArticuloInsumoController {
         articuloInsumo.setStockActual(datosActualizados.getStockActual());
         articuloInsumo.setStockMaximo(datosActualizados.getStockMaximo());
         articuloInsumo.setEsParaElaborar(datosActualizados.getEsParaElaborar());
+        articuloInsumo.setCategoria(datosActualizados.getCategoria());
 
         // Actualizar otros atributos según sea necesario
         return articuloInsumoRepository.save(articuloInsumo);
