@@ -187,6 +187,8 @@ public class BuensaborunoApplication {
             categoriaRepository.save(categoriaPizzas);
             categoriaRepository.save(categoriaInsumos);
 
+
+
             // Asigno subCategorías
             categoriaBebidas.getSubCategorias().add(categoriaGaseosas);
             categoriaBebidas.getSubCategorias().add(categoriaTragos);
@@ -211,20 +213,6 @@ public class BuensaborunoApplication {
             logger.info("---------------Grabe Guaymallen--------------------");
 
             logger.info("---------------Voy a asignar a Mardel Plata--------------------");
-            // ASOCIAMOS CATEGORIAS CON SUCURSAL
-            categoriaInsumos.getSucursales().add(sucursalMarDelPlata);
-
-            // Cargo las categorias a la sucursal Mar del Plata
-            sucursalMarDelPlata.getCategorias().add(categoriaInsumos);
-            sucursalMarDelPlata.getCategorias().add(categoriaBebidas);
-            sucursalMarDelPlata.getCategorias().add(categoriaGaseosas);
-            sucursalMarDelPlata.getCategorias().add(categoriaTragos);
-            sucursalMarDelPlata.getCategorias().add(categoriaPizzas);
-            logger.info("{}", sucursalMarDelPlata);
-
-            // Grabo las categorias que vende esa sucursal
-            sucursalRepository.save(sucursalMarDelPlata);
-            logger.info("---------------Grabe Mar del Plata--------------------");
 
             // Crear Unidades de medida
             UnidadMedida unidadMedidaLitros = UnidadMedida.builder().denominacion("Litros").build();
@@ -237,10 +225,10 @@ public class BuensaborunoApplication {
             unidadMedidaRepository.save(unidadMedidaPorciones);
 
             // Crear Insumos , coca cola , harina , etc
-            ArticuloInsumo cocaCola = ArticuloInsumo.builder().denominacion("Coca cola").unidadMedida(unidadMedidaLitros).esParaElaborar(false).stockActual(5).stockMaximo(50).precioCompra(50.0).precioVenta(70.0).build();
-            ArticuloInsumo harina = ArticuloInsumo.builder().denominacion("Harina").unidadMedida(unidadMedidaGramos).esParaElaborar(true).stockActual(4).stockMaximo(40).precioCompra(40.0).precioVenta(60.5).build();
-            ArticuloInsumo queso = ArticuloInsumo.builder().denominacion("Queso").unidadMedida(unidadMedidaGramos).esParaElaborar(true).stockActual(20).stockMaximo(50).precioCompra(23.6).precioVenta(66.6).build();
-            ArticuloInsumo tomate = ArticuloInsumo.builder().denominacion("Tomate").unidadMedida(unidadMedidaCantidad).esParaElaborar(true).stockActual(20).stockMaximo(50).precioCompra(23.6).precioVenta(66.6).build();
+            ArticuloInsumo cocaCola = ArticuloInsumo.builder().denominacion("Coca cola").unidadMedida(unidadMedidaLitros).esParaElaborar(false).stockActual(5).stockMaximo(50).precioCompra(50.0).precioVenta(70.0).categoria(categoriaBebidas).build();
+            ArticuloInsumo harina = ArticuloInsumo.builder().denominacion("Harina").unidadMedida(unidadMedidaGramos).esParaElaborar(true).stockActual(4).stockMaximo(40).precioCompra(40.0).precioVenta(60.5).categoria(categoriaInsumos).build();
+            ArticuloInsumo queso = ArticuloInsumo.builder().denominacion("Queso").unidadMedida(unidadMedidaGramos).esParaElaborar(true).stockActual(20).stockMaximo(50).precioCompra(23.6).precioVenta(66.6).categoria(categoriaInsumos).build();
+            ArticuloInsumo tomate = ArticuloInsumo.builder().denominacion("Tomate").unidadMedida(unidadMedidaCantidad).esParaElaborar(true).stockActual(20).stockMaximo(50).precioCompra(23.6).precioVenta(66.6).categoria(categoriaInsumos).build();
 
             // crear fotos para cada insumo
             ImagenArticulo imagenArticuloCoca = ImagenArticulo.builder().url("https://m.media-amazon.com/images/I/51v8nyxSOYL._SL1500_.jpg").build();
@@ -258,12 +246,6 @@ public class BuensaborunoApplication {
             queso.getImagenesArticulo().add(imagenArticuloQueso);
             tomate.getImagenesArticulo().add(imagenArticuloTomate);
 
-            // Grabamos los Articulos
-            articuloInsumoRepository.save(cocaCola);
-            articuloInsumoRepository.save(harina);
-            articuloInsumoRepository.save(queso);
-            articuloInsumoRepository.save(tomate);
-
             //ASOCIAMOS CATEGORIA CON INSUMOS
             categoriaInsumos.getArticulos().add(harina);
             categoriaInsumos.getArticulos().add(queso);
@@ -272,9 +254,18 @@ public class BuensaborunoApplication {
             categoriaRepository.save(categoriaInsumos);
             categoriaRepository.save(categoriaGaseosas);
 
+            // Grabamos los Articulos
+            articuloInsumoRepository.save(cocaCola);
+            articuloInsumoRepository.save(harina);
+            articuloInsumoRepository.save(queso);
+            articuloInsumoRepository.save(tomate);
+
+
+
+
             // Crear Articulos Manufacturados
-            ArticuloManufacturado pizzaMuzarella = ArticuloManufacturado.builder().denominacion("Pizza Muzarella").descripcion("Una pizza clasica").unidadMedida(unidadMedidaPorciones).precioVenta(130.0).tiempoEstimadoMinutos(15).preparacion("Pasos de preparacion de una muzza de toda la vida").build();
-            ArticuloManufacturado pizzaNapolitana = ArticuloManufacturado.builder().denominacion("Pizza Napolitana").descripcion("Una pizza con muzarella y Rodajas de tomate fresco").unidadMedida(unidadMedidaPorciones).precioVenta(150.0).tiempoEstimadoMinutos(15).preparacion("Pasos de preparacion de una pizza napolitana italiana").build();
+            ArticuloManufacturado pizzaMuzarella = ArticuloManufacturado.builder().denominacion("Pizza Muzarella").descripcion("Una pizza clasica").unidadMedida(unidadMedidaPorciones).precioVenta(130.0).tiempoEstimadoMinutos(15).preparacion("Pasos de preparacion de una muzza de toda la vida").categoria(categoriaPizzas).build();
+            ArticuloManufacturado pizzaNapolitana = ArticuloManufacturado.builder().denominacion("Pizza Napolitana").descripcion("Una pizza con muzarella y Rodajas de tomate fresco").unidadMedida(unidadMedidaPorciones).precioVenta(150.0).tiempoEstimadoMinutos(15).preparacion("Pasos de preparacion de una pizza napolitana italiana").categoria(categoriaPizzas).build();
 
             // Crear fotos para los artículos manufacturados
             ImagenArticulo imagenArticuloPizzaMuzarella = ImagenArticulo.builder().url("https://storage.googleapis.com/fitia-api-bucket/media/images/recipe_images/1002846.jpg").build();
